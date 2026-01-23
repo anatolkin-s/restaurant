@@ -2,6 +2,7 @@
     "name": "anatolkin/anatolkin-restaurant",
     "type": "typo3-cms-extension",
     "description": "Modern Restaurant Management System for TYPO3 v13",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Anatolkin",
@@ -14,6 +15,11 @@
     "autoload": {
         "psr-4": {
             "Anatolkin\\AnatolkinRestaurant\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "anatolkin_restaurant"
         }
     }
 }
