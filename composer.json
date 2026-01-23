@@ -1,0 +1,19 @@
+{
+    "name": "anatolkin/anatolkin-restaurant",
+    "type": "typo3-cms-extension",
+    "description": "Modern Restaurant Management System for TYPO3 v13",
+    "authors": [
+        {
+            "name": "Anatolkin",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anatolkin\\AnatolkinRestaurant\\": "Classes/"
+        }
+    }
+}
