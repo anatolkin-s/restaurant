@@ -6,7 +6,7 @@
 - [ ] Генерация composer.json и ext_emconf.php
 - [ ] Настройка Services.yaml (DI / Autowiring)
 
-## [ ] Этап 2: Схема данных (TCA)
+## [x] Этап 2: Схема данных (TCA)
 - [ ] Описание таблиц в ext_tables.sql
 - [ ] Создание Domain моделей (Location, Category, Item)
 - [ ] Регистрация иконок и плагинов в tt_content
