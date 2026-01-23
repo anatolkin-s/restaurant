@@ -10,7 +10,4 @@ plugin.tx_anatolkinrestaurant_menulist {
             0 = EXT:anatolkin_restaurant/Resources/Private/Layouts/
         }
     }
-    persistence {
-        storagePid = {$plugin.tx_anatolkinrestaurant_menulist.persistence.storagePid}
-    }
 }

@@ -8,13 +8,5 @@ ExtensionUtility::configurePlugin(
     'AnatolkinRestaurant',
     'MenuList',
     [MenuController::class => 'list'],
-    [MenuController::class => ''] // Non-cacheable actions
-);
-
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-
-ExtensionManagementUtility::addTypoScript(
-    'anatolkin_restaurant',
-    'setup',
-    "@import 'EXT:anatolkin_restaurant/Configuration/TypoScript/setup.typoscript'"
+    [MenuController::class => '']
 );
