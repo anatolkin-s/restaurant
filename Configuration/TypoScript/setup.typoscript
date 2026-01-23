@@ -1,0 +1,16 @@
+plugin.tx_anatolkinrestaurant_menulist {
+    view {
+        templateRootPaths {
+            0 = EXT:anatolkin_restaurant/Resources/Private/Templates/
+        }
+        partialRootPaths {
+            0 = EXT:anatolkin_restaurant/Resources/Private/Partials/
+        }
+        layoutRootPaths {
+            0 = EXT:anatolkin_restaurant/Resources/Private/Layouts/
+        }
+    }
+    persistence {
+        storagePid = {$plugin.tx_anatolkinrestaurant_menulist.persistence.storagePid}
+    }
+}
