@@ -1,0 +1,13 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <type>array</type>
+                <el>
+                    <settings.bookingUrl><label>Booking System URL</label><config><type>input</type></config></settings.bookingUrl>
+                    <settings.orderUrl><label>External Order URL</label><config><type>input</type></config></settings.orderUrl>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

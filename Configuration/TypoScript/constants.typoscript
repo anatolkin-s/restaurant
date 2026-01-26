@@ -1,0 +1,34 @@
+# customcategory=restaurant=Restaurant: Design & Globals
+# customsubcategory=res_visuals=Colors & Visuals
+# customsubcategory=res_globals=Default UIDs & Integrations
+
+plugin.tx_anatolkinrestaurant {
+    persistence {
+        # cat=restaurant/res_globals/010; type=int+; label=Default Storage PID
+        storagePid = 0
+    }
+    settings {
+        # cat=restaurant/res_globals/020; type=int+; label=Default Detail Page UID
+        detailPage = 0
+        # cat=restaurant/res_globals/030; type=int+; label=Default Checkout Page UID
+        checkoutPage = 0
+        # cat=restaurant/res_globals/035; type=int+; label=Default Menu Page UID
+        menuPage = 0
+        
+        # cat=restaurant/res_globals/040; type=string; label=External Booking URL
+        bookingUrl = https://order.online/
+        # cat=restaurant/res_globals/050; type=string; label=External Order URL
+        orderUrl = https://order.online/
+
+        # cat=restaurant/res_visuals/100; type=string; label=Order Button Color
+        orderButtonColor = #fd7e14
+        # cat=restaurant/res_visuals/110; type=string; label=Details Button Color
+        detailsButtonColor = rgba(128,128,128,0.15)
+        # cat=restaurant/res_visuals/115; type=string; label=Cart Bar Color
+        cartBarColor = #198754
+        # cat=restaurant/res_visuals/120; type=boolean; label=Global App Mode (Mobile Full Width)
+        fullWidth = 1
+        # cat=restaurant/res_visuals/130; type=string; label=Currency Symbol
+        currencySymbol = $
+    }
+}

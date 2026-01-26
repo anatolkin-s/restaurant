@@ -1,0 +1,33 @@
+mod.wizards.newContentElement.wizardItems {
+    restaurant {
+        header = Restaurant Menu
+        after = common
+        elements {
+            anatolkinrestaurant_pi1 {
+                iconIdentifier = restaurant-icon
+                title = Menu List
+                # ... остальное без изменений
+            }
+            anatolkinrestaurant_pi2 {
+                iconIdentifier = restaurant-icon
+                title = Item Details
+                # ...
+            }
+            anatolkinrestaurant_categories {
+                iconIdentifier = restaurant-icon
+                title = Category Navigation
+                # ...
+            }
+            anatolkinrestaurant_integrations {
+                iconIdentifier = restaurant-icon
+                title = Restaurant Integrations
+                # ...
+            }
+            anatolkinrestaurant_checkout {
+                iconIdentifier = restaurant-icon
+                title = Restaurant Checkout
+                # ...
+            }
+        }
+    }
+}

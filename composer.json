@@ -1,0 +1,19 @@
+{
+    "name": "anatolkin/anatolkinrestaurant",
+    "type": "typo3-cms-extension",
+    "description": "Restaurant Menu & Item Detail (v0.1.1 - Fixed)",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "typo3/cms-core": "^13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anatolkin\\Anatolkinrestaurant\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "anatolkinrestaurant"
+        }
+    }
+}

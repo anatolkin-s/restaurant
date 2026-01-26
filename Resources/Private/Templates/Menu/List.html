@@ -1,0 +1,81 @@
+<f:layout name="Default" />
+<f:section name="Main">
+    <div class="rest-extension-wrapper restaurant-app-mode">
+        <div class="container-fluid mt-4">
+            <f:for each="{categories}" as="category">
+                <div id="cat-{category.uid}" class="mb-5 pt-3">
+                    <h2 class="h3 mb-4 fw-bold border-bottom pb-2 px-3 text-white-target">{category.title}</h2>
+                    <div class="row g-4">
+                        <f:for each="{category.items}" as="item">
+                            <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
+                                <div class="card h-100 border-0 bg-transparent w-100" style="max-width: 400px;">
+                                    <div class="position-relative overflow-hidden" style="aspect-ratio: 1/1;">
+                                        <f:if condition="{item.image.0}">
+                                            <f:image image="{item.image.0}" width="600c" height="600c" class="w-100 h-100" style="object-fit:cover;" />
+                                        </f:if>
+                                        <f:if condition="{item.badge}">
+                                            <span class="badge position-absolute {f:if(condition: '{item.badge} == \'vegan\'', then: 'bg-success', else: 'bg-danger')}" style="top:10px; right:10px;">{item.badge}</span>
+                                        </f:if>
+                                    </div>
+                                    <div class="card-body d-flex flex-column p-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h5 class="card-title fw-bold m-0 text-truncate text-white-target">{item.title}</h5>
+                                            <f:if condition="!{settings.hidePrice}"><span class="fw-bold price-tag">{settings.currencySymbol}{item.price}</span></f:if>
+                                        </div>
+                                        <p class="small opacity-75 flex-grow-1 text-white-target">
+                                            <f:format.crop maxCharacters="100">{item.description -> f:format.stripTags()}</f:format.crop>
+                                        </p>
+                                        <div class="d-flex gap-2 mt-3">
+                                            <f:link.action action="show" controller="Item" arguments="{item: item}" pageUid="{settings.detailPage}" class="btn btn-res btn-res-info flex-grow-1 py-2">Details</f:link.action>
+                                            <button class="btn btn-res btn-res-add flex-grow-1 py-2 text-white" onclick="addToCart({item.uid}, '{item.title}', {item.price})">🛒 Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </f:for>
+                    </div>
+                </div>
+            </f:for>
+        </div>
+
+        <div id="cart-floating-bar" style="display: none; position: fixed; bottom: 20px; left: 0; right: 0; z-index: 1050; padding: 0 15px;">
+            <f:link.page pageUid="{settings.checkoutPage}" class="text-decoration-none">
+                <div class="cart-pill p-3 shadow-lg" style="background-color: var(--rest-cart-bg, #198754) !important; border-radius: 50px;">
+                    <div class="d-flex justify-content-between align-items-center w-100 text-white px-2">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-white text-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 32px; height: 32px; font-weight: bold;">
+                                <span id="cart-count-badge">0</span>
+                            </div>
+                            <div class="fw-bold">View Order</div>
+                        </div>
+                        <div id="cart-total-label" class="h5 mb-0 fw-bold">$0.00</div>
+                    </div>
+                </div>
+            </f:link.page>
+        </div>
+    </div>
+    <script>
+        if (typeof addToCart !== 'function') {
+            function addToCart(id, title, price) {
+                let cart = JSON.parse(localStorage.getItem('restaurant_cart_v2')) || {};
+                if (cart[id]) { cart[id].qty += 1; } else { cart[id] = {title: title, price: parseFloat(price), qty: 1}; }
+                localStorage.setItem('restaurant_cart_v2', JSON.stringify(cart));
+                updateCartUI();
+            }
+        }
+        function updateCartUI() {
+            const cart = JSON.parse(localStorage.getItem('restaurant_cart_v2')) || {};
+            const bar = document.getElementById('cart-floating-bar');
+            if (!bar) return;
+            const entries = Object.values(cart);
+            if (entries.length > 0) {
+                const count = entries.reduce((acc, i) => acc + i.qty, 0);
+                const total = entries.reduce((acc, i) => acc + (i.price * i.qty), 0);
+                document.getElementById('cart-count-badge').innerText = count;
+                document.getElementById('cart-total-label').innerText = '{settings.currencySymbol}' + total.toFixed(2);
+                bar.style.display = 'block';
+            } else { bar.style.display = 'none'; }
+        }
+        document.addEventListener('DOMContentLoaded', updateCartUI);
+    </script>
+</f:section>

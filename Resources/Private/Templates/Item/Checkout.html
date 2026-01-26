@@ -1,0 +1,59 @@
+<f:layout name="Default" />
+<f:section name="Main">
+    <div class="rest-extension-wrapper container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="m-0 text-white-target fw-bold">Confirm Your Order</h2>
+            <button class="btn btn-sm btn-outline-danger" onclick="clearCart()">Clear All</button>
+        </div>
+        <div id="checkout-list" class="mb-4"></div>
+        <div id="checkout-summary" class="card p-4 border-0 shadow-lg bg-dark-target" style="display:none; border: 1px solid rgba(128,128,128,0.2) !important;">
+            <div class="d-flex justify-content-between h4 text-white-target fw-bold">
+                <span>Total Amount:</span>
+                <span id="checkout-total-val" class="price-tag">$0.00</span>
+            </div>
+            <hr class="opacity-25">
+            <button class="btn btn-success btn-lg w-100 py-3 fw-bold shadow" onclick="alert('Sent!')">Confirm Order</button>
+        </div>
+        <div id="empty-cart-info" class="text-center py-5">
+            <p class="lead opacity-50 text-white-target">Your cart is empty</p>
+            <f:link.page pageUid="{settings.menuPage}" class="btn btn-outline-primary px-4">Browse Menu</f:link.page>
+        </div>
+    </div>
+    <script>
+        function renderCheckout() {
+            const cart = JSON.parse(localStorage.getItem('restaurant_cart_v2')) || {};
+            const list = document.getElementById('checkout-list');
+            const summary = document.getElementById('checkout-summary');
+            const empty = document.getElementById('empty-cart-info');
+            const entries = Object.entries(cart);
+            if (entries.length > 0) {
+                list.innerHTML = entries.map(([id, item]) => `
+                    <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-white-transparent rounded shadow-sm border border-secondary">
+                        <div><h6 class="mb-0 fw-bold text-white-target">${item.title}</h6><small class="opacity-50 text-white-target">$${item.price.toFixed(2)}</small></div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="btn-group border border-secondary rounded">
+                                <button class="btn btn-sm text-white-target px-3" onclick="updateQty(${id}, -1)">-</button>
+                                <span class="btn btn-sm text-white-target fw-bold px-1" style="min-width:30px;">${item.qty}</span>
+                                <button class="btn btn-sm text-white-target px-3" onclick="updateQty(${id}, 1)">+</button>
+                            </div>
+                            <span class="fw-bold price-tag" style="min-width: 80px; text-align: right;">$${(item.price * item.qty).toFixed(2)}</span>
+                        </div>
+                    </div>`).join('');
+                let total = Object.values(cart).reduce((acc, i) => acc + (i.price * i.qty), 0);
+                document.getElementById('checkout-total-val').innerText = '$' + total.toFixed(2);
+                summary.style.display = 'block'; empty.style.display = 'none';
+            } else { list.innerHTML = ''; summary.style.display = 'none'; empty.style.display = 'block'; }
+        }
+        function updateQty(id, delta) {
+            let cart = JSON.parse(localStorage.getItem('restaurant_cart_v2')) || {};
+            if (cart[id]) {
+                cart[id].qty += delta;
+                if (cart[id].qty <= 0) delete cart[id];
+                localStorage.setItem('restaurant_cart_v2', JSON.stringify(cart));
+                renderCheckout();
+            }
+        }
+        function clearCart() { if(confirm('Clear?')) { localStorage.removeItem('restaurant_cart_v2'); renderCheckout(); } }
+        document.addEventListener('DOMContentLoaded', renderCheckout);
+    </script>
+</f:section>

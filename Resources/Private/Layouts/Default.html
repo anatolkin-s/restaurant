@@ -1,0 +1,23 @@
+<f:spaceless>
+<div class="rest-extension-wrapper {f:if(condition: settings.fullWidth, then: 'restaurant-app-mode')}">
+    <f:render section="Main" />
+</div>
+
+<f:if condition="{settings.checkoutPage}">
+    <div id="cart-floating-bar" style="display: none; position: fixed; bottom: 20px; left: 0; right: 0; z-index: 1050; padding: 0 15px;">
+        <f:link.page pageUid="{settings.checkoutPage}" class="text-decoration-none">
+            <div class="cart-pill p-3 shadow-lg" style="background-color: #198754 !important; border-radius: 50px;">
+                <div class="d-flex justify-content-between align-items-center w-100 text-white px-2">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-white text-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 32px; height: 32px; font-weight: bold;">
+                            <span id="cart-count-badge">0</span>
+                        </div>
+                        <div class="fw-bold">View Order</div>
+                    </div>
+                    <div id="cart-total-label" class="h5 mb-0 fw-bold">$0.00</div>
+                </div>
+            </div>
+        </f:link.page>
+    </div>
+</f:if>
+</f:spaceless>

@@ -1,0 +1,47 @@
+config.tx_extbase {
+    persistence {
+        classes {
+            Anatolkin\Anatolkinrestaurant\Domain\Model\Category {
+                mapping {
+                    tableName = tx_anatolkinrestaurant_domain_model_category
+                }
+            }
+            Anatolkin\Anatolkinrestaurant\Domain\Model\Item {
+                mapping {
+                    tableName = tx_anatolkinrestaurant_domain_model_item
+                }
+            }
+            Anatolkin\Anatolkinrestaurant\Domain\Model\Allergen {
+                mapping {
+                    tableName = tx_anatolkinrestaurant_domain_model_allergen
+                }
+            }
+        }
+    }
+}
+
+plugin.tx_anatolkinrestaurant {
+    persistence {
+        storagePid = {$plugin.tx_anatolkinrestaurant.persistence.storagePid}
+    }
+    view {
+        templateRootPaths.100 = EXT:anatolkinrestaurant/Resources/Private/Templates/
+        partialRootPaths.100 = EXT:anatolkinrestaurant/Resources/Private/Partials/
+        layoutRootPaths.100 = EXT:anatolkinrestaurant/Resources/Private/Layouts/
+    }
+}
+
+plugin.tx_anatolkinrestaurant_pi1 < plugin.tx_anatolkinrestaurant
+plugin.tx_anatolkinrestaurant_pi2 < plugin.tx_anatolkinrestaurant
+plugin.tx_anatolkinrestaurant_categories < plugin.tx_anatolkinrestaurant
+plugin.tx_anatolkinrestaurant_integrations < plugin.tx_anatolkinrestaurant
+plugin.tx_anatolkinrestaurant_checkout < plugin.tx_anatolkinrestaurant
+
+page {
+    includeCSS {
+        restaurant_app = EXT:anatolkinrestaurant/Resources/Public/Css/main.css
+    }
+    includeJSFooter {
+        anatolkin_cart = EXT:anatolkinrestaurant/Resources/Public/JavaScript/cart.js
+    }
+}

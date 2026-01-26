@@ -1,0 +1,6 @@
+mod.wizards.newContentElement.wizardItems {
+    Restaurant {
+        header = Restaurant
+        after = common,special,menu,plugins
+    }
+}

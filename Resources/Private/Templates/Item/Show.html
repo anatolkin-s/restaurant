@@ -1,0 +1,75 @@
+<f:layout name="Default" />
+<f:section name="Main">
+    <div class="rest-extension-wrapper container py-4">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <f:if condition="{item.image}">
+                    <div class="rounded-4 overflow-hidden shadow-sm mb-3" style="aspect-ratio: 1/1; background: #000;">
+                        <f:image image="{item.image.0}" width="800c" height="800c" class="w-100 h-100" style="object-fit:cover; transition: 0.2s;" id="main-product-image" />
+                    </div>
+                    <div class="row g-2">
+                        <f:for each="{item.image}" as="img">
+                            <div class="col-3 thumb-container" style="cursor:pointer;" onclick="changeProductImage(this)" data-large-src="{f:uri.image(image: img, width: '800c', height: '800c')}">
+                                <f:image image="{img}" width="200c" height="200c" class="w-100 h-100 rounded-3 border" style="object-fit:cover; border-width: 2px !important;" />
+                            </div>
+                        </f:for>
+                    </div>
+                </f:if>
+            </div>
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <f:if condition="{item.category}">
+                        <f:if condition="{settings.menuPage}">
+                            <f:then>
+                                <f:link.page pageUid="{settings.menuPage}" section="cat-{item.category.uid}" class="badge bg-secondary text-decoration-none opacity-75">{item.category.title}</f:link.page>
+                            </f:then>
+                            <f:else>
+                                <span class="badge bg-secondary opacity-75">{item.category.title}</span>
+                            </f:else>
+                        </f:if>
+                    </f:if>
+                    <f:if condition="{item.badge}">
+                        <span class="badge {f:if(condition: '{item.badge} == \'vegan\'', then: 'bg-success', else: 'bg-danger')}">{item.badge}</span>
+                    </f:if>
+                </div>
+                
+                <h1 class="display-5 fw-bold">{item.title}</h1>
+
+                <f:if condition="!{settings.hidePrice}">
+                    <p class="h2 mb-4 price-tag" style="color: #fd7e14;">{settings.currencySymbol}{item.price}</p>
+                </f:if>
+
+                <div class="description mb-4 opacity-75">
+                    <f:format.html>{item.description}</f:format.html>
+                </div>
+
+                <f:if condition="!{settings.hideAllergens}">
+                    <f:if condition="{f:count(subject: item.allergens)} > 0">
+                        <div class="mb-4">
+                            <h6 class="fw-bold">Allergens:</h6>
+                            <f:for each="{item.allergens}" as="allergen">
+                                <span class="badge border text-muted me-1">{allergen.title}</span>
+                            </f:for>
+                        </div>
+                    </f:if>
+                </f:if>
+
+                <f:if condition="!{settings.hideNutrition}">
+                    <div class="nutrition border border-secondary rounded-4 p-4 bg-transparent shadow-sm">
+                        <h6 class="text-uppercase small opacity-50 mb-3">Nutrition Facts</h6>
+                        <div class="row text-center">
+                            <div class="col-3 border-end"><strong>{item.calories}</strong><br><small class="opacity-50">kcal</small></div>
+                            <div class="col-3 border-end"><strong>{item.protein}g</strong><br><small class="opacity-50">Prot</small></div>
+                            <div class="col-3 border-end"><strong>{item.fat}g</strong><br><small class="opacity-50">Fat</small></div>
+                            <div class="col-3"><strong>{item.carbohydrate}g</strong><br><small class="opacity-50">Carbs</small></div>
+                        </div>
+                    </div>
+                </f:if>
+
+                <div class="mt-5">
+                    <button class="btn btn-res btn-res-add w-100 py-3 text-white fw-bold shadow-sm" style="background-color: #fd7e14;" onclick="addToCart({item.uid}, '{item.title}', {item.price})">🛒 Add to Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>

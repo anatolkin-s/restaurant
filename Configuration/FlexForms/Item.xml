@@ -1,0 +1,26 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <type>array</type>
+                <el>
+                    <settings.menuPage>
+                        <label>Main Menu Page (For category links)</label>
+                        <config><type>group</type><allowed>pages</allowed><size>1</size><maxitems>1</maxitems></config>
+                    </settings.menuPage>
+                    <settings.backPage>
+                        <label>Back Button Page</label>
+                        <config><type>group</type><allowed>pages</allowed><size>1</size><maxitems>1</maxitems></config>
+                    </settings.backPage>
+                    <settings.currencySymbol>
+                        <label>Currency Symbol</label>
+                        <config><type>input</type><default>$</default></config>
+                    </settings.currencySymbol>
+                    <settings.hidePrice><label>Hide Price</label><config><type>check</type></config></settings.hidePrice>
+                    <settings.hideAllergens><label>Hide Allergens</label><config><type>check</type></config></settings.hideAllergens>
+                    <settings.hideNutrition><label>Hide Nutrition Facts</label><config><type>check</type></config></settings.hideNutrition>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

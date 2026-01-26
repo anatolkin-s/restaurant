@@ -1,0 +1,18 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Anatolkin\Anatolkinrestaurant\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  # Репозитории должны быть публичными для Extbase v13
+  Anatolkin\Anatolkinrestaurant\Domain\Repository\:
+    resource: '../Classes/Domain/Repository/*'
+    public: true
+
+  Anatolkin\Anatolkinrestaurant\Controller\:
+    resource: '../Classes/Controller/*'
+    public: true

@@ -1,0 +1,33 @@
+/* Переменные для быстрой настройки */
+:root {
+    --rest-accent: #fd7e14;
+    --rest-success: #198754;
+}
+
+/* Адаптация под темную тему */
+.text-white-target { color: inherit !important; }
+.bg-dark-target { background: rgba(255,255,255,0.05) !important; }
+.bg-white-transparent { background: rgba(255,255,255,0.03) !important; }
+
+/* Кастомные цены */
+.price-tag {
+    color: var(--rest-accent);
+}
+
+/* Мобильный "App" вид */
+@media (max-width: 767px) {
+    .container-fluid { padding: 0 !important; }
+    .card { border-radius: 0 !important; border-bottom: 1px solid rgba(128,128,128,0.2) !important; }
+    .restaurant-app-mode h2 { font-size: 1.25rem; margin-top: 10px; }
+}
+
+/* Навигация категорий */
+.category-nav-wrapper {
+    background: rgba(var(--bs-body-bg-rgb), 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Кнопки */
+.btn-res-add { background-color: var(--rest-accent) !important; color: #fff !important; }
+.btn-res-info { background-color: rgba(128,128,128,0.2) !important; color: inherit !important; }
+.cart-pill { background-color: var(--rest-success) !important; }

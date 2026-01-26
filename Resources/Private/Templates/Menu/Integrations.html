@@ -1,0 +1,13 @@
+<f:layout name="Default" />
+<f:section name="Main">
+    <div class="integrations-wrapper container py-2">
+        <div class="d-flex gap-3">
+            <f:if condition="{settings.bookingUrl}">
+                <a href="{settings.bookingUrl}" target="_blank" class="btn btn-dark flex-grow-1">📅 Booking</a>
+            </f:if>
+            <f:if condition="{settings.orderUrl}">
+                <a href="{settings.orderUrl}" target="_blank" class="btn btn-success flex-grow-1">🛒 Order Online</a>
+            </f:if>
+        </div>
+    </div>
+</f:section>

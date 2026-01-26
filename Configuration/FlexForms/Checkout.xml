@@ -1,0 +1,15 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <type>array</type>
+                <el>
+                    <settings.menuPage>
+                        <label>Menu Page UID (Back button)</label>
+                        <config><type>group</type><allowed>pages</allowed><size>1</size><maxitems>1</maxitems></config>
+                    </settings.menuPage>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
